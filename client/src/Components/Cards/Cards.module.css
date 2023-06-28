@@ -1,0 +1,4 @@
+.CardsConteiner{
+    display: flex;
+    flex-wrap: wrap;
+}
