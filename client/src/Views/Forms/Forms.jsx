@@ -67,7 +67,7 @@ const Forms = () => {
   const handlerSubmit = (e) => {
     e.preventDefault()
     
-    if ((Object.keys(error).length === 0) && (form.type.length !== 0)) {
+    if ((Object.keys(error).length !== 0) && (form.type.length !== 0)) {
       dispatch(postPokemons(form))
       alert("The pokemon was created!!")
       setForm({

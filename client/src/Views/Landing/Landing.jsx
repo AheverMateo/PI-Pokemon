@@ -7,7 +7,7 @@ const Landing = () => {
       <img className={style.landingimg} src="https://www.mundodeportivo.com/alfabeta/hero/2023/04/pokemon-primera-generacion.1682856451.4993.jpg?" alt="" />
       <div className={style.buttonContainer}>
         <Link to="/home">
-          <button className={style.button}>Mundo Pokemon</button>
+          <button className={style.button}>Pokemon World</button>
         </Link> 
       </div>
     </div>
