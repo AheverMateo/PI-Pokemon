@@ -13,7 +13,7 @@ const getHandlersPokemon = async (req, res) =>{
             res.status(200).send(allPoke)
         }
     } catch (error) {
-        res.status(500).send("Error getting pokemon")
+        res.status(500).send({error: error.message})
     }
 }
 
