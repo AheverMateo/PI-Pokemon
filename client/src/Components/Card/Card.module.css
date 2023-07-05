@@ -1,6 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 .cardConteiner {
-    background-color: aqua;
-    width: auto;
-    margin: 1rem;
-    text-align: center;
+  width: auto;
+  margin: 2rem;
+  text-align: center;
 }
+
+.pokemonContainer {
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #DB575B;
+  box-shadow: 2px 4px 15px 0 red ;
+}
+
+.img {
+  background-color: #DF686C;
+  border-radius: 8px;
+}
+
+.name {
+  font-family: 'Press Start 2P', cursive;
+  line-height: 2;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #F1FF33;
+}
+
+.attack {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #fd131b;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  border: 1px solid #fc0008;
+  padding: 5px;
+}
+
+.defense {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #00FF00;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  border: 1px solid #00FF00;
+  padding: 5px;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.types ul {
+  padding: 5px 10px;
+  background-color: #E2FFD6;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.types ul span {
+  font-weight: bold;
+  color: rgb(39, 39, 39);
+}
+
+  

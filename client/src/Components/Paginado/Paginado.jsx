@@ -1,4 +1,4 @@
-
+import style from "./Paginado.module.css"
 const Paginado = ({ pokemonsPerPage, pokemons, paginado }) => {
     const pageNumber = [];
     for (let i = 1; i <= Math.ceil(pokemons / pokemonsPerPage); i++) {
@@ -7,14 +7,21 @@ const Paginado = ({ pokemonsPerPage, pokemons, paginado }) => {
   
     return (
       <nav>
-        <ul>
+        <ul className={style.pagination}>
           {pageNumber &&
             pageNumber.map((number) => (
-                <button onClick={() => paginado(number)}>{number}</button>
+              <li key={number}>
+                <button
+                  className={style.button}
+                  onClick={() => paginado(number)}
+                >
+                  {number}
+                </button>
+              </li>
             ))}
         </ul>
       </nav>
     );
-  };
+}    
   export default Paginado;
   

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {useDispatch} from "react-redux"
 import { getNamePokemons } from "../../Redux/actions"
+import style from "./Search.module.css"
 
 function SearchBar() {
     const [name , setName] = useState("")
@@ -12,22 +13,19 @@ function SearchBar() {
     
     const handlerSubmit = (e) =>{
         e.preventDefault()
-        if (name.length > 1) {
-            dispatch(getNamePokemons(name))
-        } else {
-            alert("No ingreso nada en la busqueda")
-        }
+        dispatch(getNamePokemons(name))
     }
 
     return (
-    <div>
+    <div className={style.searchConteiner}>
         <input
+        className={style.searchInput}
          type="text" 
-         placeholder="Buscar Pokemon" 
+         placeholder="search pokemon" 
          value={name}
          onChange={(e) => handlerName(e)}
          />
-        <button onClick={(e) => handlerSubmit(e)} >Buscar</button>
+        <button className={style.buttonSeacrh} onClick={(e) => handlerSubmit(e)} >Search</button>
     </div>
   )
 }

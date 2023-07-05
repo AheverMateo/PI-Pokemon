@@ -7,11 +7,17 @@ function Cards({currentPokemons}) {
     <div className={style.CardsConteiner}>
         {
           currentPokemons.map(props => {
+            const nameTypes = props.Types?.map(obj => obj.name)
+            const types = nameTypes || props.type
             return (
               <Card
+              key = {props.id}
+              id = {props.id}
               name = {props.name}
               img = {props.img}
-              type = {props.type}
+              type = {types}
+              attack = {props.attack}
+              defense = {props.defense}
               />
             )
           })

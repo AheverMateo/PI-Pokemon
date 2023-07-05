@@ -8,7 +8,7 @@ function App() {
   const {pathname} = useLocation ()
   return (
     <div>
-    {pathname !=="/" && <NavBar/>}
+    {pathname === '/home' && <NavBar />}
     <Switch>
       <Route exact path = "/" component = {Landing}/>
       <Route exact path = "/Home" component = {Home}/>
