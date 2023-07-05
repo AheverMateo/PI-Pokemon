@@ -97,9 +97,6 @@ const getPokemonId = async (id , source) => {
         try {
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             const dataId = response.data
-            if (!dataId) {
-                throw new Error("La ID del juego no fue encontrada")
-            }
             return infoId = [{
                 id: dataId.id,
                 name: dataId.name,
@@ -113,7 +110,7 @@ const getPokemonId = async (id , source) => {
                 type: dataId.types.map((t) => t.type.name),
               }]
         } catch (error) {
-            console.error("Error al obtener el Pokemon de la API:", error)
+            throw new Error("Error al obtener el Pokemon de la API")
         }
     }
 }
