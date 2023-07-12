@@ -1,11 +1,12 @@
-import {GET_ALL_POKEMONS, GET_NAME_POKEMONS, FILTER_CREATE, GET_TYPE_POKEMONS, FILTER_TYPE, FILTER_ORDER, FILTER_ATTACK, POST_POKEMON, GET_DETAIL} from "./actions"
+import {GET_ALL_POKEMONS, GET_NAME_POKEMONS, FILTER_CREATE, GET_TYPE_POKEMONS, FILTER_TYPE, FILTER_ORDER, FILTER_ATTACK, POST_POKEMON, GET_DETAIL, CLEAN_DETAIL,} from "./actions"
 
 
 const initialState = {
     Pokemons : [],
     replicPokemon: [],
     allTypes: [],
-    details: []
+    details: [],
+    currentPage: 1
 }
 
 
@@ -35,6 +36,11 @@ const rootReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 details: action.payload
+            }
+        case CLEAN_DETAIL:
+            return {
+                ...state,
+                details: null
             }
         case FILTER_TYPE :
             const filterTypes = action.payload === "All" ? state.replicPokemon 

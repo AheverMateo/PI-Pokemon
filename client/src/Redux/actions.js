@@ -8,7 +8,7 @@ export const FILTER_ORDER = "FILTER_ORDER"
 export const FILTER_ATTACK = "FILTER_ATTACK"
 export const POST_POKEMON = "POST_POKEMON"
 export const GET_DETAIL = "GET_DETAIL"
-
+export const CLEAN_DETAIL = "CLEAN_DETAIL"
 
 export const getAllpokemons = ()=>{
 
@@ -102,6 +102,11 @@ export const filterByAttack = (payload) =>{
         payload
     }
 }
+
+export const cleanDetail = () =>{
+    return { type: CLEAN_DETAIL }
+}
+
 
 
 

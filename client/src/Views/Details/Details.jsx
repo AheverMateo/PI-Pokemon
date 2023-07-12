@@ -2,16 +2,20 @@ import style from "./Details.module.css"
 import {useDispatch, useSelector} from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { useEffect } from 'react'
-import { getDetailPoke } from '../../Redux/actions'
+import { getDetailPoke, cleanDetail } from '../../Redux/actions'
 function Details() {
   const dispatch = useDispatch()
   const { id } = useParams()
-  const myDetail = useSelector((state) => state.details)
+  const myDetail = useSelector((state) => state.details);
 
   
-  useEffect(()=>{
-    dispatch (getDetailPoke(id))
-  },[dispatch, id])
+  useEffect(() => {
+    dispatch(getDetailPoke(id));
+
+    return () => {
+      dispatch(cleanDetail());
+    };
+  }, [dispatch, id])
   
   return (
     <div className={style.img1}>

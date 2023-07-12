@@ -40,36 +40,44 @@ const Forms = () => {
 
 
   const handlerChange = (e) =>{
-    const property = e.target.name
-    const value = e.target.value
-    setForm( { ...form, [property]: value } )
-    setError( validation({ ...form, [property]: value }) )
+    setForm({ 
+      ...form,
+      [e.target.name]: e.target.value 
+    })
+    setError( validation({ 
+      ...form,
+      [e.target.name]: e.target.value
+    }))
+    console.log(form)
   }
 
-  const handlerRadio = (e) => {
-    const selectedType = e.target.value
-    const selectedTypes = form.type
+  const handlerCheck = (e) => {
+    const selectedType = e.target.value;
+    const selectedTypes = form.type;
   
-    if (selectedTypes.includes(selectedType)) {
-      setError({ ...error, type: "The type has already been selected" })
-      return
+    if (e.target.checked) {
+      if (selectedTypes.length >= 2) {
+        setError({ ...error, type: "Only up to two types are allowed to be selected" });
+        return;
+      }
+      setForm({ ...form, type: [...selectedTypes, selectedType] });
+    } else {
+      const updatedTypes = selectedTypes.filter((type) => type !== selectedType);
+      setForm({ ...form, type: updatedTypes });
     }
+    setError({ ...error, type: "" });
+  };
   
-    if (selectedTypes.length >= 2) {
-      setError({ ...error, type: "Only up to two types are allowed to be selected" })
-      return
-    }
-  
-    setForm({ ...form, type: [...selectedTypes, selectedType] })
-    setError({ ...error, type: "" })
-  };  
   
   const handlerSubmit = (e) => {
-    e.preventDefault()
-    
-    if ((Object.keys(error).length !== 0) && (form.type.length !== 0)) {
-      dispatch(postPokemons(form))
-      alert("The pokemon was created!!")
+    e.preventDefault();
+  
+    const isFormIncomplete = Object.values(form).some((value) => value === "");
+    if (isFormIncomplete) {
+      alert("Debe completar todos los campos");
+    } else {
+      dispatch(postPokemons(form));
+      alert("El Pokémon ha sido creado");
       setForm({
         name: "",
         life: "",
@@ -79,13 +87,10 @@ const Forms = () => {
         height: "",
         weight: "",
         img: "",
-        type: []
-      })
-    } else {
-      alert("Please fill in all the required fields and select at least one type.")
+        type: [],
+      });
     }
-  }
-  
+  };
 
   return (
     <div className={style.formContainer} >
@@ -146,7 +151,7 @@ const Forms = () => {
         {typePoke.map((poke) =>{
           return(
             <label key={poke.id}>
-              <input type="radio" value={poke.name} name="type" onChange={handlerRadio} />
+              <input type="checkbox" value={poke.name} name="type" onChange={handlerCheck} />
               {poke.name}
             </label>
           )

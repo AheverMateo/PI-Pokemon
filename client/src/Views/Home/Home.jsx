@@ -1,6 +1,7 @@
 import style from "./Home.module.css"
 import Cards from "../../Components/Cards/Cards"
 import Paginado from "../../Components/Paginado/Paginado"
+import NavBar from "../../Components/NavBar/NavBar"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllpokemons, filterCreated, getTypePokemons, filterByType, fitlerOrder, filterByAttack } from "../../Redux/actions"
@@ -17,13 +18,10 @@ const Home = () => {
   const paginado = (pageNumber) =>{
     setCurrentPage(pageNumber)
   }
-
   useEffect (() =>{
     dispatch (getAllpokemons())
     dispatch (getTypePokemons())
   },[dispatch])
-
-
 
   const handlerCreated = (e) => {
     dispatch(filterCreated(e.target.value))
@@ -46,6 +44,7 @@ const Home = () => {
 
   return (
     <div className={style.homeConteiner}>
+      <NavBar paginado= {paginado}/>
       <div className={style.backgroundImage}></div>
 
       <div className={style.selectConteiner}>
@@ -82,6 +81,7 @@ const Home = () => {
       pokemonsPerPage={pokemonsPerPage}
       pokemons={pokemons.length}
       paginado={paginado}
+      currentPage={currentPage}
       />
       <Cards currentPokemons={currentPokemons}/>
     

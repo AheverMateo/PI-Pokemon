@@ -1,27 +1,41 @@
 import style from "./Paginado.module.css"
-const Paginado = ({ pokemonsPerPage, pokemons, paginado }) => {
-    const pageNumber = [];
-    for (let i = 1; i <= Math.ceil(pokemons / pokemonsPerPage); i++) {
-      pageNumber.push(i);
-    }
-  
-    return (
-      <nav>
-        <ul className={style.pagination}>
-          {pageNumber &&
-            pageNumber.map((number) => (
-              <li key={number}>
-                <button
-                  className={style.button}
-                  onClick={() => paginado(number)}
-                >
-                  {number}
-                </button>
-              </li>
-            ))}
-        </ul>
-      </nav>
-    );
-}    
-  export default Paginado;
+import { useState, useEffect } from 'react';
+
+const Paginado = ({ pokemonsPerPage, pokemons, paginado, currentPage }) => {
+  const [activeButton, setActiveButton] = useState(currentPage);
+
+  useEffect(() => {
+    setActiveButton(currentPage);
+  }, [currentPage])
+
+  const pageNumber = [];
+  for (let i = 1; i <= Math.ceil(pokemons / pokemonsPerPage); i++) {
+    pageNumber.push(i);
+  }
+
+  const handleButtonClick = (number) => {
+    setActiveButton(number);
+    paginado(number);
+  };
+
+  return (
+    <nav>
+      <ul className={style.pagination}>
+        {pageNumber.map((number) => (
+          <li key={number}>
+            <button
+              className={`${style.button} ${number === activeButton ? style.active : ''}`}
+              onClick={() => handleButtonClick(number)}
+            >
+              {number}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+export default Paginado;
+
   
